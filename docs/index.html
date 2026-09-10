@@ -61,6 +61,14 @@
       font-size: 22px;
       font-weight: 600;
       letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 18px;
     }
 
     nav {
@@ -71,6 +79,26 @@
     }
 
     nav a { color: var(--muted); }
+
+    .language-select {
+      max-width: 154px;
+      padding: 6px 28px 6px 10px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #ffffff;
+      color: var(--muted);
+      font: inherit;
+      font-size: 13px;
+      line-height: 1.4;
+      cursor: pointer;
+    }
+
+    .language-select:hover,
+    .language-select:focus {
+      border-color: #aab6c3;
+      color: var(--text);
+      outline: none;
+    }
 
     main { padding: 68px 0 72px; }
 
@@ -237,11 +265,27 @@
       flex-wrap: wrap;
     }
 
-    @media (max-width: 680px) {
+    html[dir="rtl"] .publication {
+      direction: ltr;
+      text-align: left;
+    }
+
+    html[dir="rtl"] .pub-links {
+      justify-content: flex-start;
+    }
+
+    @media (max-width: 760px) {
       .topbar {
         align-items: flex-start;
         flex-direction: column;
         padding: 18px 0;
+      }
+
+      .header-actions {
+        width: 100%;
+        align-items: flex-start;
+        justify-content: space-between;
+        flex-wrap: wrap;
       }
 
       nav { gap: 14px 18px; }
@@ -265,12 +309,42 @@
   <header>
     <div class="wrap topbar">
       <a class="brand" href="#top">Yukun Zheng</a>
-      <nav aria-label="Primary navigation">
-        <a href="#about">About</a>
-        <a href="#publications">Publications</a>
-        <a href="#activities">Activities &amp; Service</a>
-        <a href="https://github.com/Yukun-Zheng">GitHub</a>
-      </nav>
+      <div class="header-actions">
+        <nav aria-label="Primary navigation">
+          <a href="#about" data-i18n="about">About</a>
+          <a href="#publications" data-i18n="publications">Publications</a>
+          <a href="#activities" data-i18n="activities">Activities &amp; Service</a>
+          <a href="https://github.com/Yukun-Zheng">GitHub</a>
+        </nav>
+
+        <!-- Language names use language/script labels only; no flags or political-territory labels. -->
+        <select id="language-switcher" class="language-select" aria-label="Language" translate="no">
+          <optgroup label="Common / 常用">
+            <option value="zh-Hans">简体中文</option>
+            <option value="zh-Hant">繁體中文</option>
+            <option value="en">English</option>
+            <option value="ja">日本語</option>
+            <option value="ko">한국어</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+            <option value="es">Español</option>
+          </optgroup>
+          <optgroup label="More languages / 更多语言">
+            <option value="ar">العربية · Arabic</option>
+            <option value="cs">Čeština · Czech</option>
+            <option value="nl">Nederlands · Dutch</option>
+            <option value="hi">हिन्दी · Hindi</option>
+            <option value="id">Bahasa Indonesia · Indonesian</option>
+            <option value="it">Italiano · Italian</option>
+            <option value="pl">Polski · Polish</option>
+            <option value="pt">Português · Portuguese</option>
+            <option value="ru">Русский · Russian</option>
+            <option value="tr">Türkçe · Turkish</option>
+            <option value="uk">Українська · Ukrainian</option>
+            <option value="vi">Tiếng Việt · Vietnamese</option>
+          </optgroup>
+        </select>
+      </div>
     </div>
   </header>
 
@@ -278,10 +352,8 @@
     <section id="about" class="hero" style="border-top:0; padding-top:0;">
       <p class="kicker">Embodied AI · Robot Learning</p>
       <h1>Yukun Zheng <span class="cn">郑煜坤</span></h1>
-      <p class="lead">
-        I am a Computer Science undergraduate at Shenzhen University. My research interests center on
-        embodied AI and robot learning, with particular interest in generalist embodied systems,
-        humanoid robotics, human–object interaction, and motion generation.
+      <p class="lead" data-i18n="lead">
+        I am a Computer Science undergraduate at Shenzhen University. My research interests center on embodied AI and robot learning, with particular interest in generalist embodied systems, humanoid robotics, human–object interaction, and motion generation.
       </p>
       <div class="quick-links" aria-label="Contact and profiles">
         <a href="mailto:zhengyukun2005@gmail.com">Email</a>
@@ -291,7 +363,7 @@
     </section>
 
     <section aria-labelledby="research-heading">
-      <h2 id="research-heading">Research Interests</h2>
+      <h2 id="research-heading" data-i18n="research">Research Interests</h2>
       <div class="interests">
         <span class="interest">Embodied AI</span>
         <span class="interest">Robot Learning</span>
@@ -303,8 +375,8 @@
     </section>
 
     <section id="publications" aria-labelledby="publications-heading">
-      <h2 id="publications-heading">Publications</h2>
-      <article class="publication">
+      <h2 id="publications-heading" data-i18n="publications">Publications</h2>
+      <article class="publication" dir="ltr">
         <div class="year">2026</div>
         <div>
           <p class="pub-title">LeHome: A Simulation Environment for Deformable Object Manipulation in Household Scenarios</p>
@@ -315,24 +387,24 @@
           </div>
           <div class="venue">IEEE International Conference on Robotics and Automation (ICRA), 2026</div>
           <div class="pub-links">
-            <a href="https://lehome-web.github.io/">Project</a>
-            <a href="https://arxiv.org/abs/2604.22363">Paper</a>
-            <a href="https://github.com/lehome-official/lehome">Code</a>
+            <a href="https://lehome-web.github.io/" data-i18n="project">Project</a>
+            <a href="https://arxiv.org/abs/2604.22363" data-i18n="paper">Paper</a>
+            <a href="https://github.com/lehome-official/lehome" data-i18n="code">Code</a>
           </div>
         </div>
       </article>
     </section>
 
     <section id="activities" aria-labelledby="activities-heading">
-      <h2 id="activities-heading">Academic Activities &amp; Service</h2>
+      <h2 id="activities-heading" data-i18n="activities">Academic Activities &amp; Service</h2>
       <div class="timeline">
         <article class="activity">
           <div class="activity-date">Sep 2026</div>
           <div>
-            <p class="activity-title">Volunteer · CCF Standards Conference (CSC 2026)</p>
+            <p class="activity-title"><span data-i18n="volunteer">Volunteer</span> · <span dir="ltr">CCF Standards Conference (CSC 2026)</span></p>
             <div class="activity-detail">
-              Shenzhen, China · Sep 5–6, 2026 · 16 hours of conference volunteer service ·
-              <a href="https://www.ccf.org.cn/Standards/News/2026-09-08/930221.shtml">Conference</a>
+              <span dir="ltr">Shenzhen, China · </span><span data-i18n="ccfService">Sep 5–6, 2026 · 16 hours of conference volunteer service ·</span>
+              <a href="https://www.ccf.org.cn/Standards/News/2026-09-08/930221.shtml" data-i18n="conference">Conference</a>
             </div>
           </div>
         </article>
@@ -340,10 +412,10 @@
         <article class="activity">
           <div class="activity-date">Aug 2026</div>
           <div>
-            <p class="activity-title">Attendee · World Robot Conference 2026 (WRC 2026)</p>
+            <p class="activity-title"><span data-i18n="attendee">Attendee</span> · <span dir="ltr">World Robot Conference 2026 (WRC 2026)</span></p>
             <div class="activity-detail">
-              Beijing, China · Aug 19–23, 2026 ·
-              <a href="https://www.worldrobotconference.com/en">Conference</a>
+              <span dir="ltr">Beijing, China · </span><span data-i18n="wrcDate">Aug 19–23, 2026 ·</span>
+              <a href="https://www.worldrobotconference.com/en" data-i18n="conference">Conference</a>
             </div>
           </div>
         </article>
@@ -354,8 +426,379 @@
   <footer>
     <div class="wrap footer-row">
       <span>© 2026 Yukun Zheng</span>
-      <span>Last updated September 2026</span>
+      <span data-i18n="updated">Last updated September 2026</span>
     </div>
   </footer>
+
+  <script>
+    const translations = {
+      en: {
+        about: "About",
+        publications: "Publications",
+        activities: "Academic Activities & Service",
+        lead: "I am a Computer Science undergraduate at Shenzhen University. My research interests center on embodied AI and robot learning, with particular interest in generalist embodied systems, humanoid robotics, human–object interaction, and motion generation.",
+        research: "Research Interests",
+        project: "Project",
+        paper: "Paper",
+        code: "Code",
+        volunteer: "Volunteer",
+        ccfService: "Sep 5–6, 2026 · 16 hours of conference volunteer service ·",
+        attendee: "Attendee",
+        wrcDate: "Aug 19–23, 2026 ·",
+        conference: "Conference",
+        updated: "Last updated September 2026"
+      },
+      "zh-Hans": {
+        about: "关于",
+        publications: "论文",
+        activities: "学术活动与服务",
+        lead: "我是深圳大学计算机科学与技术专业本科生。我的研究主要聚焦具身智能与机器人学习，并关注通用具身系统、人形机器人、人–物交互与运动生成。",
+        research: "研究方向",
+        project: "项目主页",
+        paper: "论文",
+        code: "代码",
+        volunteer: "志愿者",
+        ccfService: "2026年9月5–6日 · 提供16小时会议志愿服务 ·",
+        attendee: "参会者",
+        wrcDate: "2026年8月19–23日 ·",
+        conference: "大会主页",
+        updated: "最后更新：2026年9月"
+      },
+      "zh-Hant": {
+        about: "關於",
+        publications: "論文",
+        activities: "學術活動與服務",
+        lead: "我是深圳大學電腦科學相關專業本科生。我的研究主要聚焦具身智能與機器人學習，並關注通用具身系統、人形機器人、人–物互動與動作生成。",
+        research: "研究方向",
+        project: "專案主頁",
+        paper: "論文",
+        code: "程式碼",
+        volunteer: "志願者",
+        ccfService: "2026年9月5–6日 · 提供16小時會議志願服務 ·",
+        attendee: "參會者",
+        wrcDate: "2026年8月19–23日 ·",
+        conference: "大會主頁",
+        updated: "最後更新：2026年9月"
+      },
+      ja: {
+        about: "プロフィール",
+        publications: "論文",
+        activities: "学術活動・サービス",
+        lead: "深圳大学でコンピュータサイエンスを学ぶ学部生です。研究関心は Embodied AI とロボット学習を中心に、汎用具身システム、ヒューマノイドロボティクス、人–物体インタラクション、モーション生成にあります。",
+        research: "研究分野",
+        project: "プロジェクト",
+        paper: "論文",
+        code: "コード",
+        volunteer: "ボランティア",
+        ccfService: "2026年9月5–6日 · 会議ボランティア16時間 ·",
+        attendee: "参加者",
+        wrcDate: "2026年8月19–23日 ·",
+        conference: "大会",
+        updated: "最終更新：2026年9月"
+      },
+      ko: {
+        about: "소개",
+        publications: "논문",
+        activities: "학술 활동 및 봉사",
+        lead: "선전대학교 컴퓨터과학 학부생입니다. 연구 관심은 Embodied AI와 로봇 학습을 중심으로 범용 embodied system, 휴머노이드 로보틱스, 인간–물체 상호작용, 모션 생성에 있습니다.",
+        research: "연구 관심 분야",
+        project: "프로젝트",
+        paper: "논문",
+        code: "코드",
+        volunteer: "자원봉사자",
+        ccfService: "2026년 9월 5–6일 · 학술대회 자원봉사 16시간 ·",
+        attendee: "참가자",
+        wrcDate: "2026년 8월 19–23일 ·",
+        conference: "학술대회",
+        updated: "마지막 업데이트: 2026년 9월"
+      },
+      fr: {
+        about: "À propos",
+        publications: "Publications",
+        activities: "Activités et service académiques",
+        lead: "Je suis étudiant en licence d'informatique à l'Université de Shenzhen. Mes recherches portent sur l'IA incarnée et l'apprentissage robotique, avec un intérêt particulier pour les systèmes incarnés généralistes, la robotique humanoïde, l'interaction humain–objet et la génération de mouvement.",
+        research: "Thèmes de recherche",
+        project: "Projet",
+        paper: "Article",
+        code: "Code",
+        volunteer: "Bénévole",
+        ccfService: "5–6 sept. 2026 · 16 heures de bénévolat pour la conférence ·",
+        attendee: "Participant",
+        wrcDate: "19–23 août 2026 ·",
+        conference: "Conférence",
+        updated: "Dernière mise à jour : septembre 2026"
+      },
+      de: {
+        about: "Über mich",
+        publications: "Publikationen",
+        activities: "Akademische Aktivitäten & Service",
+        lead: "Ich studiere Informatik im Bachelor an der Shenzhen University. Meine Forschungsinteressen liegen in Embodied AI und Robot Learning, insbesondere in generalistischen Embodied-Systemen, humanoider Robotik, Mensch–Objekt-Interaktion und Bewegungsgenerierung.",
+        research: "Forschungsinteressen",
+        project: "Projekt",
+        paper: "Publikation",
+        code: "Code",
+        volunteer: "Freiwilliger",
+        ccfService: "5.–6. Sept. 2026 · 16 Stunden freiwilliger Konferenzdienst ·",
+        attendee: "Teilnehmer",
+        wrcDate: "19.–23. Aug. 2026 ·",
+        conference: "Konferenz",
+        updated: "Zuletzt aktualisiert: September 2026"
+      },
+      es: {
+        about: "Sobre mí",
+        publications: "Publicaciones",
+        activities: "Actividades y servicio académico",
+        lead: "Soy estudiante de grado en Informática en la Universidad de Shenzhen. Mis intereses de investigación se centran en la IA corpórea y el aprendizaje robótico, especialmente en sistemas corpóreos generalistas, robótica humanoide, interacción humano–objeto y generación de movimiento.",
+        research: "Intereses de investigación",
+        project: "Proyecto",
+        paper: "Artículo",
+        code: "Código",
+        volunteer: "Voluntario",
+        ccfService: "5–6 sep. 2026 · 16 horas de voluntariado en la conferencia ·",
+        attendee: "Asistente",
+        wrcDate: "19–23 ago. 2026 ·",
+        conference: "Conferencia",
+        updated: "Última actualización: septiembre de 2026"
+      },
+      ar: {
+        about: "نبذة",
+        publications: "المنشورات",
+        activities: "الأنشطة والخدمة الأكاديمية",
+        lead: "أنا طالب بكالوريوس في علوم الحاسوب بجامعة شينزن. تتركز اهتماماتي البحثية على الذكاء الاصطناعي المجسّد وتعلّم الروبوت، مع اهتمام خاص بالأنظمة المجسّدة العامة، والروبوتات البشرية، والتفاعل بين الإنسان والأشياء، وتوليد الحركة.",
+        research: "الاهتمامات البحثية",
+        project: "المشروع",
+        paper: "الورقة",
+        code: "الشفرة",
+        volunteer: "متطوع",
+        ccfService: "5–6 سبتمبر 2026 · 16 ساعة من الخدمة التطوعية للمؤتمر ·",
+        attendee: "مشارك",
+        wrcDate: "19–23 أغسطس 2026 ·",
+        conference: "المؤتمر",
+        updated: "آخر تحديث: سبتمبر 2026"
+      },
+      cs: {
+        about: "O mně",
+        publications: "Publikace",
+        activities: "Akademické aktivity a služba",
+        lead: "Jsem studentem bakalářského studia informatiky na Shenzhen University. Ve výzkumu se zaměřuji na embodied AI a robotické učení, zejména na obecné embodied systémy, humanoidní robotiku, interakci člověk–objekt a generování pohybu.",
+        research: "Výzkumné zájmy",
+        project: "Projekt",
+        paper: "Článek",
+        code: "Kód",
+        volunteer: "Dobrovolník",
+        ccfService: "5.–6. září 2026 · 16 hodin dobrovolnické služby na konferenci ·",
+        attendee: "Účastník",
+        wrcDate: "19.–23. srpna 2026 ·",
+        conference: "Konference",
+        updated: "Naposledy aktualizováno: září 2026"
+      },
+      nl: {
+        about: "Over mij",
+        publications: "Publicaties",
+        activities: "Academische activiteiten & service",
+        lead: "Ik ben bachelorstudent Computer Science aan Shenzhen University. Mijn onderzoeksinteresses richten zich op embodied AI en robot learning, met bijzondere aandacht voor generalistische embodied systemen, humanoïde robotica, mens–objectinteractie en bewegingsgeneratie.",
+        research: "Onderzoeksinteresses",
+        project: "Project",
+        paper: "Paper",
+        code: "Code",
+        volunteer: "Vrijwilliger",
+        ccfService: "5–6 sep. 2026 · 16 uur vrijwilligerswerk voor de conferentie ·",
+        attendee: "Deelnemer",
+        wrcDate: "19–23 aug. 2026 ·",
+        conference: "Conferentie",
+        updated: "Laatst bijgewerkt: september 2026"
+      },
+      hi: {
+        about: "परिचय",
+        publications: "प्रकाशन",
+        activities: "शैक्षणिक गतिविधियाँ और सेवा",
+        lead: "मैं Shenzhen University में कंप्यूटर साइंस का स्नातक छात्र हूँ। मेरी शोध रुचियाँ embodied AI और robot learning पर केंद्रित हैं, विशेष रूप से generalist embodied systems, humanoid robotics, मानव–वस्तु अंतःक्रिया और motion generation में।",
+        research: "शोध रुचियाँ",
+        project: "प्रोजेक्ट",
+        paper: "शोधपत्र",
+        code: "कोड",
+        volunteer: "स्वयंसेवक",
+        ccfService: "5–6 सितंबर 2026 · सम्मेलन में 16 घंटे की स्वयंसेवी सेवा ·",
+        attendee: "प्रतिभागी",
+        wrcDate: "19–23 अगस्त 2026 ·",
+        conference: "सम्मेलन",
+        updated: "अंतिम अपडेट: सितंबर 2026"
+      },
+      id: {
+        about: "Tentang",
+        publications: "Publikasi",
+        activities: "Kegiatan & layanan akademik",
+        lead: "Saya mahasiswa sarjana Ilmu Komputer di Shenzhen University. Minat riset saya berfokus pada embodied AI dan robot learning, khususnya sistem embodied generalis, robotika humanoid, interaksi manusia–objek, dan generasi gerak.",
+        research: "Minat riset",
+        project: "Proyek",
+        paper: "Makalah",
+        code: "Kode",
+        volunteer: "Relawan",
+        ccfService: "5–6 Sep 2026 · 16 jam layanan relawan konferensi ·",
+        attendee: "Peserta",
+        wrcDate: "19–23 Agu 2026 ·",
+        conference: "Konferensi",
+        updated: "Terakhir diperbarui: September 2026"
+      },
+      it: {
+        about: "Profilo",
+        publications: "Pubblicazioni",
+        activities: "Attività e servizio accademico",
+        lead: "Sono uno studente di laurea in Informatica presso la Shenzhen University. I miei interessi di ricerca riguardano l'Embodied AI e il robot learning, con particolare attenzione ai sistemi embodied generalisti, alla robotica umanoide, all'interazione uomo–oggetto e alla generazione del movimento.",
+        research: "Interessi di ricerca",
+        project: "Progetto",
+        paper: "Articolo",
+        code: "Codice",
+        volunteer: "Volontario",
+        ccfService: "5–6 set. 2026 · 16 ore di volontariato per la conferenza ·",
+        attendee: "Partecipante",
+        wrcDate: "19–23 ago. 2026 ·",
+        conference: "Conferenza",
+        updated: "Ultimo aggiornamento: settembre 2026"
+      },
+      pl: {
+        about: "O mnie",
+        publications: "Publikacje",
+        activities: "Aktywność i służba akademicka",
+        lead: "Jestem studentem studiów licencjackich z informatyki na Shenzhen University. Moje zainteresowania badawcze obejmują embodied AI i robot learning, ze szczególnym uwzględnieniem ogólnych systemów embodied, robotyki humanoidalnej, interakcji człowiek–obiekt i generowania ruchu.",
+        research: "Zainteresowania badawcze",
+        project: "Projekt",
+        paper: "Publikacja",
+        code: "Kod",
+        volunteer: "Wolontariusz",
+        ccfService: "5–6 wrz. 2026 · 16 godzin wolontariatu konferencyjnego ·",
+        attendee: "Uczestnik",
+        wrcDate: "19–23 sie. 2026 ·",
+        conference: "Konferencja",
+        updated: "Ostatnia aktualizacja: wrzesień 2026"
+      },
+      pt: {
+        about: "Sobre",
+        publications: "Publicações",
+        activities: "Atividades e serviço acadêmico",
+        lead: "Sou estudante de graduação em Ciência da Computação na Shenzhen University. Meus interesses de pesquisa concentram-se em embodied AI e robot learning, com atenção especial a sistemas embodied generalistas, robótica humanoide, interação humano–objeto e geração de movimento.",
+        research: "Interesses de pesquisa",
+        project: "Projeto",
+        paper: "Artigo",
+        code: "Código",
+        volunteer: "Voluntário",
+        ccfService: "5–6 set. 2026 · 16 horas de voluntariado na conferência ·",
+        attendee: "Participante",
+        wrcDate: "19–23 ago. 2026 ·",
+        conference: "Conferência",
+        updated: "Última atualização: setembro de 2026"
+      },
+      ru: {
+        about: "Обо мне",
+        publications: "Публикации",
+        activities: "Академическая деятельность и служение",
+        lead: "Я студент бакалавриата по компьютерным наукам в Shenzhen University. Мои исследовательские интересы сосредоточены на embodied AI и обучении роботов, особенно на универсальных embodied-системах, гуманоидной робототехнике, взаимодействии человека с объектами и генерации движений.",
+        research: "Научные интересы",
+        project: "Проект",
+        paper: "Статья",
+        code: "Код",
+        volunteer: "Волонтёр",
+        ccfService: "5–6 сентября 2026 · 16 часов волонтёрской работы на конференции ·",
+        attendee: "Участник",
+        wrcDate: "19–23 августа 2026 ·",
+        conference: "Конференция",
+        updated: "Последнее обновление: сентябрь 2026"
+      },
+      tr: {
+        about: "Hakkımda",
+        publications: "Yayınlar",
+        activities: "Akademik etkinlikler ve hizmet",
+        lead: "Shenzhen University'de Bilgisayar Bilimleri lisans öğrencisiyim. Araştırma ilgi alanlarım embodied AI ve robot learning üzerine yoğunlaşıyor; özellikle genel amaçlı embodied sistemler, insansı robotik, insan–nesne etkileşimi ve hareket üretimiyle ilgileniyorum.",
+        research: "Araştırma alanları",
+        project: "Proje",
+        paper: "Makale",
+        code: "Kod",
+        volunteer: "Gönüllü",
+        ccfService: "5–6 Eyl 2026 · konferansta 16 saat gönüllü hizmet ·",
+        attendee: "Katılımcı",
+        wrcDate: "19–23 Ağu 2026 ·",
+        conference: "Konferans",
+        updated: "Son güncelleme: Eylül 2026"
+      },
+      uk: {
+        about: "Про мене",
+        publications: "Публікації",
+        activities: "Академічна діяльність і служіння",
+        lead: "Я студент бакалаврату з комп'ютерних наук у Shenzhen University. Мої дослідницькі інтереси зосереджені на embodied AI та навчанні роботів, зокрема на універсальних embodied-системах, гуманоїдній робототехніці, взаємодії людини з об'єктами та генерації рухів.",
+        research: "Наукові інтереси",
+        project: "Проєкт",
+        paper: "Стаття",
+        code: "Код",
+        volunteer: "Волонтер",
+        ccfService: "5–6 вересня 2026 · 16 годин волонтерської роботи на конференції ·",
+        attendee: "Учасник",
+        wrcDate: "19–23 серпня 2026 ·",
+        conference: "Конференція",
+        updated: "Останнє оновлення: вересень 2026"
+      },
+      vi: {
+        about: "Giới thiệu",
+        publications: "Công bố",
+        activities: "Hoạt động & phục vụ học thuật",
+        lead: "Tôi là sinh viên đại học ngành Khoa học Máy tính tại Shenzhen University. Hướng nghiên cứu của tôi tập trung vào embodied AI và robot learning, đặc biệt là các hệ embodied tổng quát, robot hình người, tương tác người–vật thể và sinh chuyển động.",
+        research: "Hướng nghiên cứu",
+        project: "Dự án",
+        paper: "Bài báo",
+        code: "Mã nguồn",
+        volunteer: "Tình nguyện viên",
+        ccfService: "5–6/9/2026 · 16 giờ tình nguyện phục vụ hội nghị ·",
+        attendee: "Người tham dự",
+        wrcDate: "19–23/8/2026 ·",
+        conference: "Hội nghị",
+        updated: "Cập nhật lần cuối: tháng 9/2026"
+      }
+    };
+
+    const languageSwitcher = document.getElementById("language-switcher");
+    const supported = new Set(Object.keys(translations));
+
+    function normalizeLanguage(value) {
+      if (!value) return "en";
+      const lower = value.toLowerCase();
+      if (lower.includes("zh-hant")) return "zh-Hant";
+      if (lower.startsWith("zh")) return "zh-Hans";
+      const base = lower.split("-")[0];
+      return supported.has(base) ? base : "en";
+    }
+
+    function applyLanguage(locale) {
+      const chosen = supported.has(locale) ? locale : "en";
+      const dictionary = translations[chosen];
+
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const key = element.dataset.i18n;
+        element.textContent = dictionary[key] || translations.en[key] || element.textContent;
+      });
+
+      document.documentElement.lang = chosen;
+      document.documentElement.dir = chosen === "ar" ? "rtl" : "ltr";
+      languageSwitcher.value = chosen;
+
+      try {
+        localStorage.setItem("yukun-site-language", chosen);
+      } catch (_) {
+        // The site remains fully functional if browser storage is disabled.
+      }
+    }
+
+    let initialLanguage = "";
+    try {
+      initialLanguage = localStorage.getItem("yukun-site-language") || "";
+    } catch (_) {
+      initialLanguage = "";
+    }
+
+    if (!supported.has(initialLanguage)) {
+      initialLanguage = normalizeLanguage(navigator.language);
+    }
+
+    applyLanguage(initialLanguage);
+    languageSwitcher.addEventListener("change", (event) => applyLanguage(event.target.value));
+  </script>
 </body>
 </html>
