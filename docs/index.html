@@ -3,231 +3,359 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Yukun Zheng — personal academic webpage.">
-  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Yukun Zheng — Computer Science undergraduate at Shenzhen University working on embodied AI and robot learning.">
   <link rel="canonical" href="https://yukun-zheng.github.io/Yukun-Zheng/">
   <title>Yukun Zheng · 郑煜坤</title>
   <style>
     :root {
-      --background: #f4f5f7;
-      --paper: #ffffff;
-      --text: #171a21;
-      --muted: #626a76;
-      --line: #d9dde3;
-      --accent: #253858;
-      --accent-soft: #e8edf5;
+      --bg: #ffffff;
+      --text: #18202a;
+      --muted: #65707c;
+      --line: #e2e6ea;
+      --accent: #244f7a;
+      --accent-soft: #f3f7fb;
+      --max: 960px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
-    html {
-      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--background);
-      color: var(--text);
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
-      min-width: 320px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.68;
+      -webkit-font-smoothing: antialiased;
     }
 
     a {
-      color: inherit;
-      text-decoration-color: #99a3b2;
-      text-underline-offset: 0.22em;
+      color: var(--accent);
+      text-decoration: none;
     }
 
-    a:hover {
-      text-decoration-color: currentColor;
+    a:hover { text-decoration: underline; }
+
+    .wrap {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
     }
 
-    .page {
-      width: min(920px, calc(100% - 32px));
-      min-height: calc(100vh - 64px);
-      margin: 32px auto;
-      padding: clamp(28px, 6vw, 72px);
-      display: flex;
-      flex-direction: column;
-      background: var(--paper);
-      border: 1px solid var(--line);
-      box-shadow: 0 18px 50px rgba(23, 26, 33, 0.06);
+    header {
+      border-bottom: 1px solid var(--line);
     }
 
-    header,
-    footer {
+    .topbar {
+      min-height: 76px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      gap: 28px;
     }
 
-    .mark {
-      width: 42px;
-      height: 42px;
-      display: grid;
-      place-items: center;
-      color: #ffffff;
-      background: var(--accent);
+    .brand {
+      color: var(--text);
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 15px;
-      letter-spacing: 0.04em;
-    }
-
-    nav,
-    footer {
-      color: var(--muted);
-      font-size: 14px;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
     }
 
     nav {
       display: flex;
+      flex-wrap: wrap;
       gap: 22px;
+      font-size: 14px;
     }
 
-    main {
-      flex: 1;
-      padding: clamp(72px, 13vw, 138px) 0 96px;
+    nav a { color: var(--muted); }
+
+    main { padding: 68px 0 72px; }
+
+    .hero {
+      max-width: 790px;
+      padding-bottom: 54px;
     }
 
-    .eyebrow {
-      margin: 0 0 18px;
-      color: var(--muted);
+    .kicker {
+      margin: 0 0 10px;
+      color: var(--accent);
       font-size: 13px;
-      font-weight: 650;
-      letter-spacing: 0.14em;
+      font-weight: 700;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
     }
 
-    h1 {
-      max-width: 720px;
-      margin: 0;
+    h1, h2 {
       font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(48px, 9vw, 88px);
-      font-weight: 500;
-      line-height: 0.98;
-      letter-spacing: -0.045em;
+      color: #141a21;
     }
 
-    h1 span {
-      display: block;
-      margin-top: 16px;
-      color: var(--muted);
-      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-size: clamp(20px, 3.4vw, 30px);
+    h1 {
+      margin: 0;
+      font-size: clamp(42px, 7vw, 62px);
       font-weight: 500;
+      line-height: 1.08;
       letter-spacing: -0.025em;
     }
 
-    .intro {
-      max-width: 680px;
-      margin: 36px 0 0;
-      font-size: clamp(17px, 2.3vw, 20px);
-      line-height: 1.7;
-    }
-
-    .placeholder {
-      max-width: 680px;
-      margin-top: 54px;
-      padding: 22px 24px;
+    h1 .cn {
+      margin-left: 12px;
       color: var(--muted);
-      background: var(--accent-soft);
-      border-left: 3px solid var(--accent);
-      line-height: 1.65;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 0.55em;
+      font-weight: 500;
+      letter-spacing: 0;
+      white-space: nowrap;
     }
 
-    .placeholder strong {
-      display: block;
-      margin-bottom: 5px;
-      color: var(--text);
+    .lead {
+      max-width: 760px;
+      margin: 24px 0 0;
+      font-size: 18px;
+      line-height: 1.75;
+    }
+
+    .quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      margin-top: 22px;
       font-size: 14px;
-      letter-spacing: 0.04em;
+      font-weight: 600;
     }
 
-    footer {
-      padding-top: 24px;
+    section {
+      padding: 38px 0;
       border-top: 1px solid var(--line);
     }
 
-    .links {
+    h2 {
+      margin: 0 0 22px;
+      font-size: 28px;
+      font-weight: 500;
+      letter-spacing: -0.015em;
+    }
+
+    .interests {
       display: flex;
       flex-wrap: wrap;
-      gap: 18px;
+      gap: 9px;
     }
 
-    @media (max-width: 620px) {
-      .page {
-        width: 100%;
-        min-height: 100vh;
-        margin: 0;
-        border: 0;
-      }
+    .interest {
+      padding: 6px 11px;
+      border: 1px solid #d9e2eb;
+      background: var(--accent-soft);
+      border-radius: 999px;
+      color: #33485e;
+      font-size: 14px;
+    }
 
-      header,
-      footer {
+    .publication {
+      display: grid;
+      grid-template-columns: 74px minmax(0, 1fr);
+      gap: 22px;
+    }
+
+    .year {
+      padding-top: 2px;
+      color: var(--muted);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 18px;
+    }
+
+    .pub-title {
+      margin: 0 0 8px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .authors,
+    .venue,
+    .activity-detail {
+      color: var(--muted);
+      font-size: 14.5px;
+    }
+
+    .authors strong { color: var(--text); }
+
+    .venue {
+      margin-top: 5px;
+      color: #414b57;
+      font-style: italic;
+    }
+
+    .pub-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 9px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 24px;
+    }
+
+    .activity {
+      display: grid;
+      grid-template-columns: 118px minmax(0, 1fr);
+      gap: 22px;
+    }
+
+    .activity-date {
+      color: var(--muted);
+      font-size: 14px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .activity-title {
+      margin: 0 0 4px;
+      font-size: 16px;
+      font-weight: 650;
+      line-height: 1.5;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 24px 0 34px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 680px) {
+      .topbar {
         align-items: flex-start;
         flex-direction: column;
+        padding: 18px 0;
       }
 
-      main {
-        padding-top: 68px;
-      }
-    }
+      nav { gap: 14px 18px; }
+      main { padding-top: 48px; }
+      .hero { padding-bottom: 42px; }
 
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --background: #101216;
-        --paper: #171a20;
-        --text: #f1f3f5;
-        --muted: #aab0ba;
-        --line: #333944;
-        --accent: #7890b8;
-        --accent-soft: #202733;
+      h1 .cn {
+        display: block;
+        margin: 9px 0 0;
       }
 
-      .page {
-        box-shadow: none;
-      }
-
-      .mark {
-        color: #101216;
+      .publication,
+      .activity {
+        grid-template-columns: 1fr;
+        gap: 5px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="page">
-    <header>
-      <div class="mark" aria-label="Yukun Zheng">YZ</div>
-      <nav aria-label="External links">
+  <header>
+    <div class="wrap topbar">
+      <a class="brand" href="#top">Yukun Zheng</a>
+      <nav aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#publications">Publications</a>
+        <a href="#activities">Activities &amp; Service</a>
+        <a href="https://github.com/Yukun-Zheng">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" class="wrap">
+    <section id="about" class="hero" style="border-top:0; padding-top:0;">
+      <p class="kicker">Embodied AI · Robot Learning</p>
+      <h1>Yukun Zheng <span class="cn">郑煜坤</span></h1>
+      <p class="lead">
+        I am a Computer Science undergraduate at Shenzhen University. My research interests center on
+        embodied AI and robot learning, with particular interest in generalist embodied systems,
+        humanoid robotics, human–object interaction, and motion generation.
+      </p>
+      <div class="quick-links" aria-label="Contact and profiles">
+        <a href="mailto:zhengyukun2005@gmail.com">Email</a>
         <a href="https://github.com/Yukun-Zheng">GitHub</a>
         <a href="https://orcid.org/0009-0004-8711-8817">ORCID</a>
-      </nav>
-    </header>
-
-    <main>
-      <p class="eyebrow">Personal academic webpage</p>
-      <h1>Yukun Zheng<span>郑煜坤</span></h1>
-      <p class="intro">
-        Computer Science undergraduate at Shenzhen University, interested in
-        embodied AI, human–object interaction, and motion generation.
-      </p>
-
-      <div class="placeholder">
-        <strong>Website in progress</strong>
-        Research, publications, and selected projects will be added when they
-        are ready to share.
       </div>
-    </main>
+    </section>
 
-    <footer>
-      <span>Yukun Zheng</span>
-      <div class="links">
-        <a href="mailto:zhengyukun2005@gmail.com">Email</a>
-        <a href="https://github.com/Yukun-Zheng">GitHub Profile</a>
+    <section aria-labelledby="research-heading">
+      <h2 id="research-heading">Research Interests</h2>
+      <div class="interests">
+        <span class="interest">Embodied AI</span>
+        <span class="interest">Robot Learning</span>
+        <span class="interest">Humanoid Robotics</span>
+        <span class="interest">Generalist Embodied Models</span>
+        <span class="interest">Human–Object Interaction</span>
+        <span class="interest">Motion Generation</span>
       </div>
-    </footer>
-  </div>
+    </section>
+
+    <section id="publications" aria-labelledby="publications-heading">
+      <h2 id="publications-heading">Publications</h2>
+      <article class="publication">
+        <div class="year">2026</div>
+        <div>
+          <p class="pub-title">LeHome: A Simulation Environment for Deformable Object Manipulation in Household Scenarios</p>
+          <div class="authors">
+            Zeyi Li, Yushi Yang, Shawn Xie, Kyle Xu, Tianxing Chen, Yuran Wang, Zhenhao Shen,
+            Yan Shen, Yue Chen, Wenjun Li, <strong>Yukun Zheng</strong>, Chaorui Zhang, Siyi Lin,
+            Fei Teng, Hongjun Yang, Ming Chen, Steve Xie, Ruihai Wu
+          </div>
+          <div class="venue">IEEE International Conference on Robotics and Automation (ICRA), 2026</div>
+          <div class="pub-links">
+            <a href="https://lehome-web.github.io/">Project</a>
+            <a href="https://arxiv.org/abs/2604.22363">Paper</a>
+            <a href="https://github.com/lehome-official/lehome">Code</a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="activities" aria-labelledby="activities-heading">
+      <h2 id="activities-heading">Academic Activities &amp; Service</h2>
+      <div class="timeline">
+        <article class="activity">
+          <div class="activity-date">Sep 2026</div>
+          <div>
+            <p class="activity-title">Volunteer · CCF Standards Conference (CSC 2026)</p>
+            <div class="activity-detail">
+              Shenzhen, China · Sep 5–6, 2026 · 16 hours of conference volunteer service ·
+              <a href="https://www.ccf.org.cn/Standards/News/2026-09-08/930221.shtml">Conference</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="activity">
+          <div class="activity-date">Aug 2026</div>
+          <div>
+            <p class="activity-title">Attendee · World Robot Conference 2026 (WRC 2026)</p>
+            <div class="activity-detail">
+              Beijing, China · Aug 19–23, 2026 ·
+              <a href="https://www.worldrobotconference.com/en">Conference</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row">
+      <span>© 2026 Yukun Zheng</span>
+      <span>Last updated September 2026</span>
+    </div>
+  </footer>
 </body>
 </html>
